@@ -1,8 +1,8 @@
-﻿const TRACK_W = 40;
-const TRACK_H = 40;
-const TRACK_GAP = 2;
-const TRACK_COLS = 20;
-const TRACK_ROWS = 15
+﻿const WORLD_W = 40;
+const WORLD_H = 40;
+const WORLD_GAP = 2;
+const WORLD_COLS = 20;
+const WORLD_ROWS = 15
 var levelOne = [4, 4, 1, 1, 1, 1, 1, 1, 1, 4, 4, 1, 1, 1, 1, 1, 1, 1, 4, 4,
                 4, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 4,
                 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -69,70 +69,70 @@ var slamZone = [1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 1, 1, 1, 1,
 
 var levelList = [levelOne, oldLevel, theArena, slamZone]
 var levelNow = 0;
-var trackGrid = []
+var worldGrid = []
 
-const TRACK_ROAD = 0;
-const TRACK_WALL = 1;
-const TRACK_PLAYERSTART = 2;
-const TRACK_GOAL = 3;
-const TRACK_TREE = 4;
-const TRACK_FLAG = 5;
+const WORLD_ROAD = 0;
+const WORLD_WALL = 1;
+const WORLD_PLAYERSTART = 2;
+const WORLD_GOAL = 3;
+const WORLD_TREE = 4;
+const WORLD_FLAG = 5;
 
 function returnTileTypeAtColRow(col, row) {
-    if (col >= 0 && col < TRACK_COLS &&
-        row >= 0 && row < TRACK_ROWS) {
-        var trackIndexUnderCoord = rowColtoArrayIndex(col, row);
-        return trackGrid[trackIndexUnderCoord];
+    if (col >= 0 && col < WORLD_COLS &&
+        row >= 0 && row < WORLD_ROWS) {
+        var worldIndexUnderCoord = rowColtoArrayIndex(col, row);
+        return worldGrid[worldIndexUnderCoord];
     } else {
-        return TRACK_WALL;
+        return WORLD_WALL;
     }
 }
 
-function carTrackHandling(whichCar) {
-    var carTrackCol = Math.floor(whichCar.x / TRACK_W);
-    var carTrackRow = Math.floor(whichCar.y / TRACK_H);
-    var trackIndexUnderCar = rowColtoArrayIndex(carTrackCol, carTrackRow);
+function warriorWorldHandling(whichWarrior) {
+    var warriorWorldCol = Math.floor(whichWarrior.x / WORLD_W);
+    var warriorWorldRow = Math.floor(whichWarrior.y / WORLD_H);
+    //var worldIndexUnderWarrior = rowColtoArrayIndex(warriorWorldCol, warriorWorldRow);
 
     // colourText(mouseTrackCol+","+mouseTrackRow+":"+trackIndexUnderMouse, mouseX, mouseY, 'yellow');
 
-    if (carTrackCol >= 0 && carTrackCol < TRACK_COLS &&
-        carTrackRow >= 0 && carTrackRow < TRACK_ROWS) {
-        var tileHere = returnTileTypeAtColRow(carTrackCol, carTrackRow);
+    if (warriorWorldCol >= 0 && warriorWorldCol < WORLD_COLS &&
+        warriorWorldRow >= 0 && warriorWorldRow < WORLD_ROWS) {
+        var tileHere = returnTileTypeAtColRow(warriorWorldCol, warriorWorldRow);
 
-        if (tileHere == TRACK_GOAL) {
-            console.log(whichCar.name + " Wins!")
+        if (tileHere == WORLD_GOAL) {
+            console.log(whichWarrior.name + " Wins!")
             nextLevel();
-        } else if (tileHere != TRACK_ROAD) {
-            bounceCar(whichCar);
+        } else if (tileHere != WORLD_ROAD) {
+            bounceWarrior(whichWarrior);
         } // end of track found
     } // end of valid col and row
-} // end of carTrackHandling func
+} // end of warriorWorldHandling func
 
-function bounceCar(whichCar) {
-    whichCar.x -= Math.cos(whichCar.ang) * whichCar.speed;
-    whichCar.y -= Math.sin(whichCar.ang) * whichCar.speed;
-    whichCar.speed *= -0.5;
+function bounceWarrior(whichWarrior) {
+    whichWarrior.x -= Math.cos(whichWarrior.ang) * whichWarrior.speed;
+    whichWarrior.y -= Math.sin(whichWarrior.ang) * whichWarrior.speed;
+    whichWarrior.speed *= -0.5;
 }
 
 function rowColtoArrayIndex(col, row) {
-    return col + TRACK_COLS * row;
+    return col + WORLD_COLS * row;
 }
 
-function drawTracks() {
+function drawWorld() {
     var arrayIndex = 0;
     var drawTileX = 0;
     var drawTileY = 0;
-    for (var eachRow = 0; eachRow < TRACK_ROWS; eachRow++) {
-        for (var eachCol = 0; eachCol < TRACK_COLS; eachCol++) {
-            var tileKindHere = trackGrid[arrayIndex];
-            var useImg = trackPics[tileKindHere];
+    for (var eachRow = 0; eachRow < WORLD_ROWS; eachRow++) {
+        for (var eachCol = 0; eachCol < WORLD_COLS; eachCol++) {
+            var tileKindHere = worldGrid[arrayIndex];
+            var useImg = worldPics[tileKindHere];
             canvasContext.drawImage(useImg, drawTileX, drawTileY);
 
-            drawTileX += TRACK_W;
+            drawTileX += WORLD_W;
             arrayIndex++;
         } // end of for each col
         drawTileX = 0;
-        drawTileY += TRACK_H;
+        drawTileY += WORLD_H;
     } //end of for each row
     // drawTileY = 0;
-} // end of drawTracks func
+} // end of drawWorld func

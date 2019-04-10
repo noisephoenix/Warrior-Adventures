@@ -1,6 +1,6 @@
 ﻿var canvas, canvasContext;
 
-var blueCar = new carClass();
+var warrior = new warriorClass();
 
 
 window.onload = function () {
@@ -31,8 +31,8 @@ function nextLevel() {
 }
 
 function loadLevel(whichLevel) {
-    trackGrid = whichLevel.slice();
-    blueCar.reset(carPic, "Blue Storm");
+    worldGrid = whichLevel.slice();
+    warrior.reset(warriorPic, "Blue Storm");
 }
 
 function updateAll() {
@@ -41,13 +41,13 @@ function updateAll() {
 }
 
 function moveAll() {
-    blueCar.move();
+    warrior.move();
     
 }
 
 function drawAll() {
-    drawTracks();
-    blueCar.draw();
+    drawWorld();
+    warrior.draw();
 }
 
 function drawBitmapCenteredWithRotation(useBitmap, atX, atY, withAng) {
