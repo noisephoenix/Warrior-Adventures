@@ -1,4 +1,4 @@
-﻿const MOVEMENT_SPEED = 2;
+﻿const MOVEMENT_SPEED = 3;
 
 function warriorClass() {
 
