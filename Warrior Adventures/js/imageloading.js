@@ -23,13 +23,13 @@ function loadImageForWorldCode(worldCode, fileName) {
 
 function loadImges() {
     var imageList = [
-        { varName: warriorPic, theFile: "player1.png" },
+        { varName: warriorPic, theFile: "warrior.png" },
 
-        { trackType: WORLD_ROAD, theFile: "track_road.png" },
-        { trackType: WORLD_WALL, theFile: "track_wall.png" },
-        { trackType: WORLD_GOAL, theFile: "track_goal.png" },
-        { trackType: WORLD_TREE, theFile: "track_tree.png" },
-        { trackType: WORLD_FLAG, theFile: "track_flag.png" }
+        { trackType: WORLD_ROAD, theFile: "world_ground.png" },
+        { trackType: WORLD_WALL, theFile: "world_wall.png" },
+        { trackType: WORLD_GOAL, theFile: "world_goal.png" },
+        { trackType: WORLD_TREE, theFile: "world_door.png" },
+        { trackType: WORLD_FLAG, theFile: "world_key.png" }
     ];
     picsToLoad = imageList.length;
 

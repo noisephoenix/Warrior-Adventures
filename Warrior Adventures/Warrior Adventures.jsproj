@@ -68,12 +68,12 @@
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <Content Include="images\player1.png" />
-    <Content Include="images\track_flag.png" />
-    <Content Include="images\track_goal.png" />
-    <Content Include="images\track_road.png" />
-    <Content Include="images\track_tree.png" />
-    <Content Include="images\track_wall.png" />
+    <Content Include="images\warrior.png" />
+    <Content Include="images\world_key.png" />
+    <Content Include="images\world_goal.png" />
+    <Content Include="images\world_ground.png" />
+    <Content Include="images\world_door.png" />
+    <Content Include="images\world_wall.png" />
     <Content Include="index.html" />
     <Content Include="images\LockScreenLogo.scale-200.png" />
     <Content Include="images\SplashScreen.scale-200.png" />
