@@ -1,22 +1,17 @@
-﻿const GROUNDSPEED_DECAY_MULT = 0.94;
-const FORWARD_POWER = 0.5;
-const BACKWARDS_POWER = 0.3;
-const TURN_RATE = 0.2;
-const MIN_SPEED_TO_TURN = 0.5;
+﻿const MOVEMENT_SPEED = 2;
 
 function warriorClass() {
 
     this.x = 75;
     this.y = 75;
-    this.ang = 0;
     this.speed = 0;
     this.mywarriorPic; //which car picture to use
     this.name = "Untitled Warrior"
 
-    this.KeyHeld_Accelerate = false;
-    this.KeyHeld_TurnLeft = false;
-    this.KeyHeld_Reverse = false;
-    this.KeyHeld_TurnRight = false;
+    this.KeyHeld_North = false;
+    this.KeyHeld_West = false;
+    this.KeyHeld_South = false;
+    this.KeyHeld_East = false;
 
     this.controlKeyUp;
     this.controlKeyLeft;
@@ -41,7 +36,7 @@ function warriorClass() {
                 var arrayIndex = rowColtoArrayIndex(eachCol, eachRow);
                 if (worldGrid[arrayIndex] == WORLD_PLAYERSTART) {
                     worldGrid[arrayIndex] = WORLD_ROAD;
-                    this.ang = -Math.PI / 2; // start car facing up
+                    
                     this.x = eachCol * WORLD_W + WORLD_W / 2;
                     this.y = eachRow * WORLD_H + WORLD_H / 2;
                     return;
@@ -52,32 +47,25 @@ function warriorClass() {
     } // end of reset func
 
     this.move = function() {
-        this.speed *= GROUNDSPEED_DECAY_MULT;
-        if (this.KeyHeld_Accelerate) {
-            this.speed += FORWARD_POWER;
+        if (this.KeyHeld_North) {
+            this.y -= MOVEMENT_SPEED;
         }
-
-        if (this.KeyHeld_Reverse) {
-            this.speed -= BACKWARDS_POWER;
+        if (this.KeyHeld_South) {
+            this.y += MOVEMENT_SPEED;
         }
-        if (Math.abs(this.speed) > MIN_SPEED_TO_TURN) {
-            if (this.KeyHeld_TurnLeft) {
-                this.ang -= TURN_RATE;
-            }
-
-            if (this.KeyHeld_TurnRight) {
-                this.ang += TURN_RATE;
-            }
+        if (this.KeyHeld_West) {
+            this.x -= MOVEMENT_SPEED;
         }
-
-        this.x += Math.cos(this.ang) * this.speed;
-        this.y += Math.sin(this.ang) * this.speed;
-
+        if (this.KeyHeld_East) {
+            this.x += MOVEMENT_SPEED;
+        }
+        this.speed = 0;
+        
         warriorWorldHandling(this);
     }
 
     this.draw = function() {
-        drawBitmapCenteredWithRotation(this.mywarriorPic, this.x, this.y, this.ang);
+        drawBitmapCenteredWithRotation(this.mywarriorPic, this.x, this.y);
 
     }
 

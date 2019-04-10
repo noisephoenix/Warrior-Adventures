@@ -41,16 +41,16 @@ function updateMousePos(evt) {
 
 function keySet(keyEvent, whichWarrior, setTo) {
     if (keyEvent.keyCode == whichWarrior.controlKeyUp) {
-        whichWarrior.KeyHeld_Accelerate = setTo;
+        whichWarrior.KeyHeld_North = setTo;
     }
     if (keyEvent.keyCode == whichWarrior.controlKeyLeft) {
-        whichWarrior.KeyHeld_TurnLeft = setTo;
+        whichWarrior.KeyHeld_West = setTo;
     }
     if (keyEvent.keyCode == whichWarrior.controlKeyDown) {
-        whichWarrior.KeyHeld_Reverse = setTo;
+        whichWarrior.KeyHeld_South = setTo;
     }
     if (keyEvent.keyCode == whichWarrior.controlKeyRight) {
-        whichWarrior.KeyHeld_TurnRight = setTo;
+        whichWarrior.KeyHeld_East = setTo;
     }
 }
 
