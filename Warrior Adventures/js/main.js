@@ -1,7 +1,6 @@
 ﻿var canvas, canvasContext;
 
 var blueCar = new carClass();
-var greenCar = new carClass();
 
 
 window.onload = function () {
@@ -34,7 +33,6 @@ function nextLevel() {
 function loadLevel(whichLevel) {
     trackGrid = whichLevel.slice();
     blueCar.reset(carPic, "Blue Storm");
-    greenCar.reset(otherCarPic, "Green Machine");
 }
 
 function updateAll() {
@@ -44,14 +42,12 @@ function updateAll() {
 
 function moveAll() {
     blueCar.move();
-    greenCar.move();
     
 }
 
 function drawAll() {
     drawTracks();
     blueCar.draw();
-    greenCar.draw();
 }
 
 function drawBitmapCenteredWithRotation(useBitmap, atX, atY, withAng) {

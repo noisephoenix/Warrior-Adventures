@@ -21,7 +21,6 @@ function setupInput() {
     document.addEventListener('keyup', keyReleased);
 
     blueCar.setupInput(KEY_W, KEY_A, KEY_S, KEY_D);
-    greenCar.setupInput(KEY_UP, KEY_LEFT, KEY_DOWN, KEY_RIGHT);
 }
 
 function updateMousePos(evt) {
@@ -58,11 +57,9 @@ function keySet(keyEvent, whichCar, setTo) {
 function keyPressed(evt) {
     //console.log("Key pressed: " +evt.keyCode);
     keySet(evt, blueCar, true);
-    keySet(evt, greenCar, true);
 }
 
 function keyReleased(evt) {
     //console.log("Key released: " +evt.keyCode);
     keySet(evt, blueCar, false);
-    keySet(evt, greenCar, false);
 }
