@@ -103,16 +103,10 @@ function warriorWorldHandling(whichWarrior) {
             console.log(whichWarrior.name + " Wins!")
             nextLevel();
         } else if (tileHere != WORLD_ROAD) {
-            bounceWarrior(whichWarrior);
+            whichWarrior.speed = 0;
         } // end of track found
     } // end of valid col and row
 } // end of warriorWorldHandling func
-
-function bounceWarrior(whichWarrior) {
-    whichWarrior.x -= Math.cos(whichWarrior.ang) * whichWarrior.speed;
-    whichWarrior.y -= Math.sin(whichWarrior.ang) * whichWarrior.speed;
-    whichWarrior.speed *= -0.5;
-}
 
 function rowColtoArrayIndex(col, row) {
     return col + WORLD_COLS * row;
