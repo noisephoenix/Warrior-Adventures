@@ -20,12 +20,12 @@ var levelList = [levelOne]
 var levelNow = 0;
 var worldGrid = []
 
-const WORLD_ROAD = 0;
+const WORLD_GROUND = 0;
 const WORLD_WALL = 1;
 const WORLD_PLAYERSTART = 2;
 const WORLD_GOAL = 3;
-const WORLD_TREE = 4;
-const WORLD_FLAG = 5;
+const WORLD_DOOR = 4;
+const WORLD_KEY = 5;
 
 function returnTileTypeAtColRow(col, row) {
     if (col >= 0 && col < WORLD_COLS &&
@@ -51,7 +51,7 @@ function warriorWorldHandling(whichWarrior) {
         if (tileHere == WORLD_GOAL) {
             console.log(whichWarrior.name + " Wins!")
             nextLevel();
-        } else if (tileHere != WORLD_ROAD) {
+        } else if (tileHere != WORLD_GROUND) {
             whichWarrior.speed = 0;
         } // end of track found
     } // end of valid col and row
@@ -61,6 +61,10 @@ function rowColtoArrayIndex(col, row) {
     return col + WORLD_COLS * row;
 }
 
+function tileTypeHasTransparency(checkTileType) {
+    return (checkTileType == WORLD_GOAL || checkTileType == WORLD_KEY || checkTileType == WORLD_DOOR); 
+}
+
 function drawWorld() {
     var arrayIndex = 0;
     var drawTileX = 0;
@@ -68,8 +72,11 @@ function drawWorld() {
     for (var eachRow = 0; eachRow < WORLD_ROWS; eachRow++) {
         for (var eachCol = 0; eachCol < WORLD_COLS; eachCol++) {
             var tileKindHere = worldGrid[arrayIndex];
-            var useImg = worldPics[tileKindHere];
-            canvasContext.drawImage(useImg, drawTileX, drawTileY);
+            if (tileTypeHasTransparency(tileKindHere)) {
+                canvasContext.drawImage(worldPics[WORLD_GROUND], drawTileX, drawTileY);
+            }
+            //var useImg = worldPics[tileKindHere];
+            canvasContext.drawImage(worldPics[tileKindHere], drawTileX, drawTileY);
 
             drawTileX += WORLD_W;
             arrayIndex++;

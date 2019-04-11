@@ -35,7 +35,7 @@ function warriorClass() {
             for (var eachCol = 0; eachCol < WORLD_COLS; eachCol++) {
                 var arrayIndex = rowColtoArrayIndex(eachCol, eachRow);
                 if (worldGrid[arrayIndex] == WORLD_PLAYERSTART) {
-                    worldGrid[arrayIndex] = WORLD_ROAD;
+                    worldGrid[arrayIndex] = WORLD_GROUND;
                     
                     this.x = eachCol * WORLD_W + WORLD_W / 2;
                     this.y = eachRow * WORLD_H + WORLD_H / 2;
